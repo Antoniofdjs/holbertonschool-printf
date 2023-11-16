@@ -6,34 +6,35 @@
 
 int _printf(const char *format, ...)
 {
-	int case_count = 0;/*on/off switch for cases*/
+	int case_count = 0;/* on/off switch for cases*/
 	int i = 0;
 
 	while (format != NULL && format[i] != '\0')
 	{
+		case_count = 0;
 		if (format[i] == '%')
-		{	case_count = 0;
-			i++;
-			switch (format[i])/*falta add los functions calls para printear los cases*/
+		{
+			i++;/* to check char after %"_" */
+			switch (format[i])
 			{
 				case 'c':
-					printf("-PRINTC-");
+					write(1, "-PRINTC-", 8);/* place holder for call function */
 					case_count++;
 					break;
 				case 's':
-					printf("-PRINTS-");
+					write(1, "-PRINTS-", 8);/*place holder for call function*/
 					case_count++;
 					break;
 				case '%':
 					write(1, &format[i], 1);
 					case_count++;
 					break;
-				default:
-					i--;
+				default:/* found % but no case after */
+					i--;/* we go back to index with % */
 			}
 		}
-		if (case_count == 0)
-			write(1, &format[i], 1);
+		if (case_count == 0)/* if no cases where made */
+			write(1, &format[i], 1);/* we write current index */
 		i++;
 	}
 	return (0);
