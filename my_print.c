@@ -21,14 +21,42 @@ int _printf(const char *format, ...)
 					write(1, "-PRINTC-", 8);/* place holder for call function */
 					case_count++;
 					break;
+
 				case 's':
 					write(1, "-PRINTS-", 8);/*place holder for call function*/
 					case_count++;
 					break;
+
+				case 'd':
+					write(1, "-PRINTD-", 8);
+					case_count++;
+					break;
+
+				case 'i':
+					write(1, "-PRINTI-", 8);
+					case_count++;
+					break;
+
+				case 'u':
+					write(1, "-PRINTU-", 8);
+					case_count++;
+					break;
+
+				case 'p':
+					write(1, "-PRINTP-", 8);
+					case_count++;
+					break;
+
+				case 'r':
+					write(1, "-PRINTR-", 8);
+					case_count++;
+					break;
+
 				case '%':
 					write(1, &format[i], 1);
 					case_count++;
 					break;
+
 				default:/* found % but no case after */
 					i--;/* we go back to index with % */
 			}
