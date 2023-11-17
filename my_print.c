@@ -6,8 +6,11 @@
 
 int _printf(const char *format, ...)
 {
+	va_list my_args;
 	int case_count = 0;/* on/off switch for cases*/
-	int i = 0;
+	int i = 0, total_count = 0;
+
+	va_start(my_args, format);
 
 	while (format != NULL && format[i] != '\0')
 	{
@@ -18,22 +21,14 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					write(1, "-PRINTC-", 8);/* place holder for call function */
-					case_count++;
-					break;
-
 				case 's':
-					write(1, "-PRINTS-", 8);/*place holder for call function*/
+					total_count += my_write_cs(*my_args);
 					case_count++;
 					break;
 
 				case 'd':
-					write(1, "-PRINTD-", 8);
-					case_count++;
-					break;
-
 				case 'i':
-					write(1, "-PRINTI-", 8);
+					write(1, "-PRINTD-", 8);
 					case_count++;
 					break;
 
@@ -52,6 +47,17 @@ int _printf(const char *format, ...)
 					case_count++;
 					break;
 
+				case 'x':
+				case 'X':
+					write(1, "-PRINTX-", 8);
+					case_count++;
+					break;
+
+				case 'o':
+					write(1, "-PRINTO-", 8);
+					case_count++;
+					break;
+
 				case '%':
 					write(1, &format[i], 1);
 					case_count++;
@@ -65,5 +71,5 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1);/* we write current index */
 		i++;
 	}
-	return (0);
+	return (total_count);
 }
