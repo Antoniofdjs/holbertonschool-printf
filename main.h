@@ -5,4 +5,5 @@ typedef struct {
 	void (*f)();
 }data;
 int _printf(const char *format, ...);
+int my_write_cs(va_list *my_args);
 #endif
