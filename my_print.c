@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			j = 0;
 			while (my_data[j].f != NULL)
 			{
-				if (my_data[j].type[0] == format[i])
+				if (*my_data[j].type == format[i])
 				{
 					total_count += my_data[j].f(&my_args);
 					break;
