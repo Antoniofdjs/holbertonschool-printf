@@ -8,5 +8,4 @@ int _printf(const char *format, ...);
 int my_write_cs(va_list *my_args);
 int write_s(va_list *my_args);
 int write_c(va_list *my_args);
->>>>>>> antonio
 #endif
