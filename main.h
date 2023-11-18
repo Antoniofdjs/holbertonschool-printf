@@ -2,8 +2,10 @@
 #define MAIN_H
 typedef struct {
 	char *type;
-	void (*f)();
+	int (*f)(va_list *);
 }data;
 int _printf(const char *format, ...);
 int my_write_cs(va_list *my_args);
+int write_s(va_list *my_args);
+int write_c(va_list *my_args);
 #endif
