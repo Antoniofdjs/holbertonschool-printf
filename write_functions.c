@@ -21,7 +21,7 @@ int write_s(va_list *my_args)
 	if (current_str == NULL)
 	{
 		write(1, "(NILL)", 6);
-		return (6);
+		return (0);
 	}
 	while (current_str[j] != '\0')
 	{
@@ -42,11 +42,6 @@ int write_c(va_list *my_args)
 	char current_char;
 
 	current_char = va_arg(*my_args, int);
-	if (current_char == '\0')
-	{
-		write(1, "(NILL)", 6);
-		return (6);
-	}
 
 	write(1, &current_char, 1);
 	return (1);
@@ -80,6 +75,8 @@ int write_d(va_list *my_args)
 	str = malloc(sizeof(char) * (digits + 1));
 	if (str == NULL)
 		return (-1);
+	if (str == NULL)
+		exit(98);
 	for (i = digits - 1; i >= 0; i--)/* storing nums in str in reverse */
 	{
 		str[i] = '0' + (result % 10);
