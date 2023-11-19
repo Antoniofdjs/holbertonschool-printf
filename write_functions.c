@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "main.h"
-#include "string.h"
+#include <string.h>
 #include <unistd.h>
-#include "stdarg.h"
-#include "stdlib.h"
+#include <stdarg.h>
+#include <stdlib.h>
 #include <stdint.h>
 
 /**
