@@ -48,9 +48,10 @@ int write_d(va_list *my_args) {
 		digits++;
 	}
 	str = malloc(sizeof(char) * (digits + 1));
-	if (str == NULL) {
+	if (str == NULL)
 		return (-1);
-	}
+	if (str == NULL)
+		exit(98);
 	for (i = digits - 1; i >=0; i--) {/* storing nums in str in reverse */
 		str[i] = '0' + (result % 10);
 		result /= 10;
