@@ -64,11 +64,13 @@ int write_d(va_list *my_args) {
 	return (count);
 }
 
-int write_x(va_list *my_args) {
+int write_x(va_list *my_args, const char *format) {
 	unsigned int result = 0, count = 0;
 	char *str;
-	int digits = 0, temp, i;
+	int digits = 0, temp, i, is_low = 0;
 
+	if (*format == 'x')
+		is_low = 32;
 	result = va_arg(*my_args, int);
 	temp = result;
 	while (temp != 0) {/*count the number of digits*/
@@ -80,7 +82,7 @@ int write_x(va_list *my_args) {
 		exit(98);
 	for (i = digits - 1; i >= 0; i--) { /* storing nums in str in reverse */
 		if ((result % 16 > 9))/* 10 - 16 cases */
-			str[i] = 'a' + ((result % 16) - 10);/* example 11 = a + 1 = b */
+			str[i] = 'A' + is_low + ((result % 16) - 10);/* example 11 = a + 1 = b */
 		else
 			str[i] = ('0' + result % 16); /* 0 - 9 cases */
 		result /= 16;
