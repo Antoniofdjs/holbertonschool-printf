@@ -1,9 +1,17 @@
 #ifndef MAIN_H
 #define MAIN_H
-typedef struct {
+
+/**
+ * struct data - Represents data types and their corresponding functions
+ * @type: Matching letters for the data type
+ * @f: Pointer function  that handles the specified data type
+ */
+
+typedef struct
+{
 	char *type;
 	int (*f)();
-}data;
+} data;
 int _printf(const char *format, ...);
 int my_write_cs(va_list *my_args);
 int write_s(va_list *my_args);
