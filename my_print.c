@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 		{"p", write_p},
 		{NULL, NULL}
 	};
-	
+
 	va_start(my_args, format);
 	while (format[i] != '\0' && format != NULL)
 	{
@@ -30,8 +30,7 @@ int _printf(const char *format, ...)
 				total_count++;
 			}
 			j = 0;
-			while (my_data[j].f != NULL)
-			{
+			while (my_data[j].f != NULL) {
 				if (*my_data[j].type == format[i])
 				{
 					total_count += my_data[j].f(&my_args);
