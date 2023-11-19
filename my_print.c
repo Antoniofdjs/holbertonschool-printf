@@ -39,7 +39,9 @@ int _printf(const char *format, ...)
 				}
 				j++;
 			}
-		} else {
+		}
+		else
+		{
 			write(1, &format[i], 1);
 			total_count++;
 		}
