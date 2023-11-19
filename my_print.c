@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 		{"d", write_d},
 		{"i", write_d},
 		{"x", write_x},
+		{"X", write_x},
 		{"p", write_p},
 		{NULL, NULL}
 	};
@@ -33,7 +34,7 @@ int _printf(const char *format, ...)
 			while (my_data[j].f != NULL) {
 				if (*my_data[j].type == format[i])
 				{
-					total_count += my_data[j].f(&my_args);
+					total_count += my_data[j].f(my_args, &format[i]);
 					break;
 				}
 				j++;
