@@ -40,11 +40,10 @@ int write_c(va_list *my_args)
 
 int write_d(va_list *my_args)
 {
-	int result, count = 0, i;
+	int result = 0, count = 0, i;
 	char *str;
 	char digit;
-	int digits;
-	int temp;
+	int digits = 0, temp;
 	
 	result = va_arg(*my_args, int);
 
@@ -72,12 +71,51 @@ int write_d(va_list *my_args)
 	str = malloc(sizeof(char) * (digits + 1));
 	if (str == NULL)
 	{
-		return (-1);
+		exit(98);
 	}
 	for (i = digits - 1; i >=0; i--)/* storing nums in str in reverse */
 	{
 		str[i] = '0' + (result % 10);
 		result /= 10;
+	}
+	for (i = 0; i < digits; i++)
+	{
+		write(1, &str[i], 1);
+		count++;
+	}
+
+	free(str);
+	return (count);
+}
+int write_x(va_list *my_args)
+{
+	unsigned int result = 0, count = 0;
+	char *str;
+	int digits = 0, temp, i;
+	
+	result = va_arg(*my_args, int);
+
+	temp = result;
+	digits = 0;
+
+	while (temp != 0)/*count the number of digits*/
+	{
+		temp /= 16;
+		digits++;
+	}
+	str = malloc(sizeof(char) * (digits + 1));
+	if (str == NULL)
+	{
+		exit(98);
+	}
+	for (i = digits - 1; i >= 0; i--) /* storing nums in str in reverse */
+	{
+		if ((result % 16 > 9))/* 10 - 16 cases */
+			str[i] = 'a' + ((result % 16) - 10);/* example 11 = a + 1 = b */
+		else
+			str[i] = ('0' + result); /* 0 - 9 cases */
+
+		result /= 16;
 	}
 	for (i = 0; i < digits; i++)
 	{
