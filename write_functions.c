@@ -40,10 +40,12 @@ int write_c(va_list *my_args)
 
 int write_d(va_list *my_args)
 {
-	int result = 0, count = 0, i;
+	int result, count = 0, i;
 	char *str;
 	char digit;
 	int digits;
+	int temp;
+	
 	result = va_arg(*my_args, int);
 
 	if (result < 0)
@@ -59,27 +61,30 @@ int write_d(va_list *my_args)
 		count++;
 		return (count);
 	}
-	while ((result / 10) > 10 * (i + 1))/* checks how many digits are coming */
+	temp = result;
+	digits = 0;
+
+	while (temp != 0)/*count the number of digits*/
 	{
-		i++;
+		temp /= 10;
+		digits++;
 	}
-	digits = i + 2;/* total of digits to print = str_len */
 	str = malloc(sizeof(char) * (digits + 1));
-
-	for (i = 0; i < digits; i++)/* storing nums in str in reverse */
+	if (str == NULL)
 	{
-		if (result >= 10)
-			str[digits - 1 - i] = ('0' + (result % 10));
-		else
-			str[digits -1 - i] = ('0' + result);
-
+		return (-1);
+	}
+	for (i = digits - 1; i >=0; i--)/* storing nums in str in reverse */
+	{
+		str[i] = '0' + (result % 10);
 		result /= 10;
 	}
-	for(i = 0; i < digits; i++)
+	for (i = 0; i < digits; i++)
 	{
 		write(1, &str[i], 1);
 		count++;
 	}
+
 	free(str);
 	return (count);
 }
