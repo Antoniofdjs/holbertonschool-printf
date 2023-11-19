@@ -95,17 +95,18 @@ int write_x(va_list *my_args) {
 int write_p(va_list *my_args) {
 	void *ptr = va_arg(*my_args, void *);
 	uintptr_t addr = (uintptr_t)ptr;
-
+	uintptr_t temp;
 	unsigned int count = 0;
 	char *str;
 	int digits = 0, i;
 
 	if (addr == 0) {
-		write(1, "(nil)", 5);
-		return (5);
+		write(1, "(nil", 5);
+		return(5);
 	}
-	while (addr == 0) {
-		addr /= 16;
+	temp = addr;
+	while (temp != 0) {/*calculate the number of digits*/
+		temp /= 16;
 		digits++;
 	}
 	str = malloc(sizeof(char) * (digits + 3));
@@ -122,6 +123,7 @@ int write_p(va_list *my_args) {
 		}
 		addr /= 16;
 	}
+	str[digits + 2] = '\0';
 	for (i = 0; i < digits + 2; i++) {
 		write(1, &str[i], 1);
 		count++;
