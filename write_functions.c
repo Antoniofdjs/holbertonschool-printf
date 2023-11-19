@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "main.h"
-#include <string.h>
+#include "string.h"
 #include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
+#include "stdarg.h"
+#include "stdlib.h"
 #include <stdint.h>
 
 /**
@@ -42,11 +42,6 @@ int write_c(va_list *my_args)
 	char current_char;
 
 	current_char = va_arg(*my_args, int);
-	if (current_char == '\0')
-	{
-		write(1, "(NILL)", 6);
-		return (0);
-	}
 
 	write(1, &current_char, 1);
 	return (1);
@@ -78,6 +73,8 @@ int write_d(va_list *my_args)
 		digits++;
 	}
 	str = malloc(sizeof(char) * (digits + 1));
+	if (str == NULL)
+		return (-1);
 	if (str == NULL)
 		exit(98);
 	for (i = digits - 1; i >= 0; i--)/* storing nums in str in reverse */
