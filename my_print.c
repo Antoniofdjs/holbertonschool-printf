@@ -13,6 +13,8 @@ int _printf(const char *format, ...)
 		{"c", write_c},
 		{"d", write_d},
 		{"i", write_d},
+		{"x", write_x},
+		{"p", write_p},
 		{NULL, NULL}
 	};
 	
