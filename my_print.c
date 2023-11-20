@@ -19,14 +19,13 @@ int _printf(const char *format, ...)
 		{"%", write_mod},
 		{NULL, NULL}
 	};
-
 	va_start(my_args, format);
-	while (format[i] != '\0' && format != NULL)
+	for (i = 0; format[i] != '\0' && format != NULL; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			for(j = 0; my_data[j].f != NULL; j++)
+			for (j = 0; my_data[j].f != NULL; j++)
 			{
 				if (*my_data[j].type == format[i])
 				{
@@ -34,11 +33,18 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-		} else {
+			if (j == 8)/*default if unknown char afther % match*/
+			{
+				write(1, "%", 1);/*print old % and char after*/
+				write(1, &format[i], 1);/*make a function call for this*/
+				total_count += 2;
+			}
+		}
+		else
+		{
 			write(1, &format[i], 1);
 			total_count++;
 		}
-		i++;
 	}
 	va_end(my_args);
 	return (total_count);
