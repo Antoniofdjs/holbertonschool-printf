@@ -12,6 +12,7 @@ int _printf(const char *format, ...)
 		{"s", write_s},
 		{"c", write_c},
 		{"d", write_d},
+		{"u", write_u},
 		{"i", write_d},
 		{"x", write_x},
 		{"X", write_x},
@@ -33,7 +34,7 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (j == 8)/*default if unknown char afther % match*/
+			if (j == 9)/*unknown char after % match data[j]. =  null*/
 			{
 				write(1, "%", 1);/*print old % and char after*/
 				write(1, &format[i], 1);/*make a function call for this*/
