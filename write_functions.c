@@ -190,3 +190,44 @@ int write_mod(const char *format)
 	return (1);
 }
 
+/**
+ * write_u - writes usigned ints from va_list
+ * @my_args: my va_list
+ * Return: total count of characters
+ */
+
+int write_u(va_list *my_args)
+{
+	unsigned int temp, result, digits, i;
+	char *str;
+	int count;
+
+	result = va_arg(*my_args, int);
+
+	temp = result;
+	digits = 0;
+	while (temp != 0)/*count the number of digits*/
+	{
+		temp /= 10;
+		digits++;
+	}
+	str = malloc(sizeof(char) * (digits + 1));
+	if (str == NULL)
+	{
+		write(1, "(NILL)", 6);
+		return (6);
+	}
+	for (i = digits - 1; i <= digits; i--)/* storing nums in str in reverse */
+	{
+		str[i] = '0' + (result % 10);
+		result /= 10;
+	}
+	for (i = 0; i < digits; i++)
+	{
+		write(1, &str[i], 1);
+		count++;
+	}
+	free(str);
+	return (count);
+}
+
