@@ -112,6 +112,11 @@ int write_x(va_list *my_args, const char *format)
 	if (*format == 'x')
 		is_low = 32;/*variable changes to lower cases if needed */
 	result = va_arg(*my_args, int);
+	if (result =='\0')
+	{
+		write(1, "0", 1);
+		return (1);
+	}
 	temp = result;
 	while (temp != 0)/*count the number of digits*/
 	{
