@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 		{"x", write_x},
 		{"X", write_x},
 		{"p", write_p},
+		{"o", write_o},
 		{"%", write_mod},
 		{NULL, NULL}
 	};
