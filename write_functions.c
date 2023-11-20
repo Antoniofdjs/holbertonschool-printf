@@ -21,7 +21,7 @@ int write_s(va_list *my_args)
 	if (current_str == NULL)
 	{
 		write(1, "(NILL)", 6);
-		return (0);
+		return (6);
 	}
 	while (current_str[j] != '\0')
 	{
@@ -171,7 +171,7 @@ int write_p(va_list *my_args)
 			str[i] = 'a' + (addr % 16 - 10);
 		else
 			str[i] = '0' + addr % 16;
-	addr /= 16;
+		addr /= 16;
 	}
 	str[digits + 2] = '\0';/* >>> COMMENT HERE LOUIS<<< */
 	for (i = 0; i < digits + 2; i++)
@@ -189,3 +189,4 @@ int write_mod(const char *format)
 	write(1, "%", 1);
 	return (1);
 }
+
