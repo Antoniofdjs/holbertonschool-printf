@@ -23,6 +23,8 @@ int write_s(va_list *my_args)
 		write(1, "(null)", 6);
 		return (6);
 	}
+	if (*current_str == '\0')
+		return (0);
 	while (current_str[j] != '\0')
 	{
 		write(1, &current_str[j], 1);
