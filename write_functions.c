@@ -242,4 +242,37 @@ int write_u(va_list *my_args)
 	free(str);
 	return (count);
 }
+int write_o(va_list *my_args)
+{
+	unsigned int count = 0, result = 0;
+	char *str;
+	int digits, temp, i;
 
+	result = va_arg(*my_args, int);
+
+	temp = result;
+	digits = 0;
+
+	while (temp != 0)
+	{
+		temp /= 8;
+		digits++;
+	}
+	str = malloc(sizeof(char) * (digits + 1));
+	if (str == NULL)
+	{
+		exit (98);
+	}
+	for (i = digits - 1; i >= 0; i--)
+	{
+		str[i] = '0' + (result % 8);
+		result /= 8;
+	}
+	for (i = 0; i < digits; i++)
+	{
+		write(1, &str[i], 1);
+		count++;
+	}
+	free(str);
+	return (count);
+}
