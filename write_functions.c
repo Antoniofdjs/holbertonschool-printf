@@ -59,12 +59,7 @@ int write_d(va_list *my_args)
 	char *str;
 
 	result = va_arg(*my_args, int);
-	if (result == '\0')
-	{
-		write (1, "0", 1);
-		return (1);
-	}
-	if (result < 0)
+		if (result < 0)
 	{
 		result = -result;
 		write(1, "-", 1);
