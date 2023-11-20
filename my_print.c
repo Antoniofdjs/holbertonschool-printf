@@ -18,6 +18,7 @@ int _printf(const char *format, ...)
 		{"X", write_x},
 		{"p", write_p},
 		{"%", write_mod},
+		{"o", write_o},
 		{NULL, NULL}
 	};
 	va_start(my_args, format);
@@ -34,7 +35,7 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (j == 9)/*unknown char after % match data[j]. =  null*/
+			if (j == 10)/*unknown char after % match data[j]. =  null*/
 			{
 				write(1, "%", 1);/*print old % and char after*/
 				write(1, &format[i], 1);/*make a function call for this*/
