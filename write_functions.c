@@ -42,11 +42,7 @@ int write_c(va_list *my_args)
 	char current_char;
 
 	current_char = va_arg(*my_args, int);
-	if (current_char == '\0')
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+
 	write(1, &current_char, 1);
 	return (1);
 }
