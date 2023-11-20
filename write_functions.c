@@ -20,7 +20,7 @@ int write_s(va_list *my_args)
 	current_str = va_arg(*my_args, char *);
 	if (current_str == NULL)
 	{
-		write(1, "(NILL)", 6);
+		write(1, "(null)", 6);
 		return (6);
 	}
 	while (current_str[j] != '\0')
@@ -59,6 +59,11 @@ int write_d(va_list *my_args)
 	char *str;
 
 	result = va_arg(*my_args, int);
+	if (result == '\0')
+	{
+		write (1, "0", 1);
+		return (1);
+	}
 	if (result < 0)
 	{
 		result = -result;
@@ -150,7 +155,7 @@ int write_p(va_list *my_args)
 
 	if (addr == 0)
 	{
-		write(1, "(nil", 5);
+		write(1, "(nil)", 5);
 		return (5);
 	}
 	temp = addr;
