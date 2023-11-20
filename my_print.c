@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 		{"x", write_x},
 		{"X", write_x},
 		{"p", write_p},
+		{"%", write_mod},
 		{NULL, NULL}
 	};
 
@@ -25,19 +26,13 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '%')
+			for(j = 0; my_data[j].f != NULL; j++)
 			{
-				write(1, &format[i], 1);
-				total_count++;
-			}
-			j = 0;
-			while (my_data[j].f != NULL) {
 				if (*my_data[j].type == format[i])
 				{
 					total_count += my_data[j].f(my_args, &format[i]);
 					break;
 				}
-				j++;
 			}
 		} else {
 			write(1, &format[i], 1);
