@@ -242,6 +242,7 @@ int write_u(va_list *my_args)
 	free(str);
 	return (count);
 }
+
 int write_o(va_list *my_args)
 {
 	unsigned int count = 0, result = 0;
