@@ -146,7 +146,7 @@ int write_x(va_list *my_args, const char *format)
 }
 
 /**
- * write_p ->>>>>COMMENT HERE LOUIS<<<<
+ * write_p - Function to write a pointer address in hexadecimal format.
  * @my_args: my va_list
  * Return: total count of characters
  */
@@ -154,7 +154,7 @@ int write_x(va_list *my_args, const char *format)
 int write_p(va_list *my_args)
 {
 	void *ptr = va_arg(*my_args, void *);
-	uintptr_t addr = (uintptr_t)ptr;
+	uintptr_t addr = (uintptr_t)ptr;/*Convert the pointer to uintptr_t for manipulation*/
 	uintptr_t temp;
 	unsigned int count = 0;
 	char *str;
@@ -175,8 +175,8 @@ int write_p(va_list *my_args)
 	if (str == NULL)
 		exit(98);
 
-	str[0] = '0';/* >>>>COMMENT HERE LOUIS<<<< */
-	str[1] = 'x';
+	str[0] = '0';/*the first character as '0'*/
+	str[1] = 'x';/*the second characters as '0'*/
 	for (i = digits + 1; i >= 2; i--)
 	{
 		if (addr % 16 > 9)
@@ -185,7 +185,7 @@ int write_p(va_list *my_args)
 			str[i] = '0' + addr % 16;
 		addr /= 16;
 	}
-	str[digits + 2] = '\0';/* >>> COMMENT HERE LOUIS<<< */
+	str[digits + 2] = '\0';/*null terminator at the end of the string*/
 	for (i = 0; i < digits + 2; i++)
 	{
 		write(1, &str[i], 1);
@@ -243,6 +243,11 @@ int write_u(va_list *my_args)
 	return (count);
 }
 
+/*
+ *write_o - convert decimals to octal & write them from va_list
+ *@my_args: my va_list
+ *Return: total count of characters
+ */
 int write_o(va_list *my_args)
 {
 	unsigned int count = 0, result = 0;
@@ -254,7 +259,7 @@ int write_o(va_list *my_args)
 	temp = result;
 	digits = 0;
 
-	while (temp != 0)
+	while (temp != 0)/*Calculate the number of digits in the octal*/
 	{
 		temp /= 8;
 		digits++;
@@ -262,11 +267,11 @@ int write_o(va_list *my_args)
 	str = malloc(sizeof(char) * (digits + 1));
 	if (str == NULL)
 	{
-		exit (98);
+		exit (98);/*Exit if memory allocation fails*/
 	}
-	for (i = digits - 1; i >= 0; i--)
+	for (i = digits - 1; i >= 0; i--)/*Generate the octal representation by storing remainders in the string*/
 	{
-		str[i] = '0' + (result % 8);
+		str[i] = '0' + (result % 8);/*Convert remainders to characters*/
 		result /= 8;
 	}
 	for (i = 0; i < digits; i++)
