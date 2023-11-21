@@ -267,11 +267,16 @@ int write_o(va_list *my_args)
 	str = malloc(sizeof(char) * (digits + 1));
 	if (str == NULL)
 	{
-		exit (98);/*Exit if memory allocation fails*/
+		exit (98);
 	}
 	for (i = digits - 1; i >= 0; i--)/*Generate the octal representation by storing remainders in the string*/
 	{
 		str[i] = '0' + (result % 8);/*Convert remainders to characters*/
+		exit (98);
+	}
+	for (i = digits - 1; i >= 0; i--)
+	{
+		str[i] = '0' + (result % 8);
 		result /= 8;
 	}
 	for (i = 0; i < digits; i++)
