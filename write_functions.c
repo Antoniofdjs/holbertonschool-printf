@@ -282,3 +282,10 @@ int write_o(va_list *my_args)
 	free(str);
 	return (count);
 }
+
+int write_unknown(const char *format)
+{
+	write(1, "%", 1);/*print old % and char after*/
+	write(1, format, 1);/*make a function call for this*/
+	return (2);
+}

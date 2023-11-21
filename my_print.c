@@ -37,9 +37,7 @@ int _printf(const char *format, ...)
 			}
 			if (j == 10)/*unknown char after % match data[j]. =  null*/
 			{
-				write(1, "%", 1);/*print old % and char after*/
-				write(1, &format[i], 1);/*make a function call for this*/
-				total_count += 2;
+				total_count += write_unknown(&format[i]);
 			}
 		}
 		else/* no % found */
