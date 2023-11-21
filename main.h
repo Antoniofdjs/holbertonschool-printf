@@ -17,8 +17,9 @@ int my_write_cs(va_list *my_args);
 int write_s(va_list *my_args);
 int write_c(va_list *my_args);
 int write_d(va_list *my_args);
+int write_u(va_list *my_args);
 int write_x(va_list *my_args, const char *format);
-int write_p(va_list *my_args);
 int write_o(va_list *my_args);
+int write_p(va_list *my_args);
 int write_mod(const char *format);
 #endif

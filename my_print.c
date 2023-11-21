@@ -12,36 +12,37 @@ int _printf(const char *format, ...)
 		{"s", write_s},
 		{"c", write_c},
 		{"d", write_d},
+		{"u", write_u},
 		{"i", write_d},
 		{"x", write_x},
 		{"X", write_x},
 		{"p", write_p},
-		{"o", write_o},
 		{"%", write_mod},
+		{"o", write_o},
 		{NULL, NULL}
 	};
 	va_start(my_args, format);
-	for (i = 0; format[i] != '\0' && format != NULL; i++)
+	for (i = 0; format[i] != '\0' && format != NULL; i++)/*string still exists*/
 	{
-		if (format[i] == '%')
+		if (format[i] == '%')/* match a % first time */
 		{
 			i++;
-			for (j = 0; my_data[j].f != NULL; j++)
+			for (j = 0; my_data[j].f != NULL; j++)/*Still have functions to call*/
 			{
-				if (*my_data[j].type == format[i])
+				if (*my_data[j].type == format[i])/* Matched a case */
 				{
-					total_count += my_data[j].f(my_args, &format[i]);
+					total_count += my_data[j].f(my_args, &format[i]);/* call function */
 					break;
 				}
 			}
-			if (j == 8)/*default if unknown char afther % match*/
+			if (j == 10)/*unknown char after % match data[j]. =  null*/
 			{
 				write(1, "%", 1);/*print old % and char after*/
 				write(1, &format[i], 1);/*make a function call for this*/
 				total_count += 2;
 			}
 		}
-		else
+		else/* no % found */
 		{
 			write(1, &format[i], 1);
 			total_count++;

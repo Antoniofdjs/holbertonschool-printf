@@ -20,9 +20,11 @@ int write_s(va_list *my_args)
 	current_str = va_arg(*my_args, char *);
 	if (current_str == NULL)
 	{
-		write(1, "(NILL)", 6);
-		return (0);
+		write(1, "(null)", 6);
+		return (6);
 	}
+	if (*current_str == '\0')
+		return (0);
 	while (current_str[j] != '\0')
 	{
 		write(1, &current_str[j], 1);
@@ -59,6 +61,11 @@ int write_d(va_list *my_args)
 	char *str;
 
 	result = va_arg(*my_args, int);
+	if (result == '\0')
+	{
+		write (1, "0", 1);
+		return (1);
+	}
 	if (result < 0)
 	{
 		result = -result;
@@ -107,6 +114,11 @@ int write_x(va_list *my_args, const char *format)
 	if (*format == 'x')
 		is_low = 32;/*variable changes to lower cases if needed */
 	result = va_arg(*my_args, int);
+	if (result =='\0')
+	{
+		write(1, "0", 1);
+		return (1);
+	}
 	temp = result;
 	while (temp != 0)/*count the number of digits*/
 	{
@@ -134,7 +146,7 @@ int write_x(va_list *my_args, const char *format)
 }
 
 /**
- * write_p ->>>>>COMMENT HERE LOUIS<<<<
+ * write_p - Function to write a pointer address in hexadecimal format.
  * @my_args: my va_list
  * Return: total count of characters
  */
@@ -142,7 +154,7 @@ int write_x(va_list *my_args, const char *format)
 int write_p(va_list *my_args)
 {
 	void *ptr = va_arg(*my_args, void *);
-	uintptr_t addr = (uintptr_t)ptr;
+	uintptr_t addr = (uintptr_t)ptr;/*Convert the pointer to uintptr_t for manipulation*/
 	uintptr_t temp;
 	unsigned int count = 0;
 	char *str;
@@ -150,7 +162,7 @@ int write_p(va_list *my_args)
 
 	if (addr == 0)
 	{
-		write(1, "(nil", 5);
+		write(1, "(nil)", 5);
 		return (5);
 	}
 	temp = addr;
@@ -163,17 +175,17 @@ int write_p(va_list *my_args)
 	if (str == NULL)
 		exit(98);
 
-	str[0] = '0';/* >>>>COMMENT HERE LOUIS<<<< */
-	str[1] = 'x';
+	str[0] = '0';/*the first character as '0'*/
+	str[1] = 'x';/*the second characters as '0'*/
 	for (i = digits + 1; i >= 2; i--)
 	{
 		if (addr % 16 > 9)
 			str[i] = 'a' + (addr % 16 - 10);
 		else
 			str[i] = '0' + addr % 16;
-	addr /= 16;
+		addr /= 16;
 	}
-	str[digits + 2] = '\0';/* >>> COMMENT HERE LOUIS<<< */
+	str[digits + 2] = '\0';/*null terminator at the end of the string*/
 	for (i = 0; i < digits + 2; i++)
 	{
 		write(1, &str[i], 1);
@@ -190,6 +202,52 @@ int write_mod(const char *format)
 	return (1);
 }
 
+/**
+ * write_u - writes usigned ints from va_list
+ * @my_args: my va_list
+ * Return: total count of characters
+ */
+
+int write_u(va_list *my_args)
+{
+	unsigned int temp, result, digits, i;
+	char *str;
+	int count;
+
+	result = va_arg(*my_args, int);
+
+	temp = result;
+	digits = 0;
+	while (temp != 0)/*count the number of digits*/
+	{
+		temp /= 10;
+		digits++;
+	}
+	str = malloc(sizeof(char) * (digits + 1));
+	if (str == NULL)
+	{
+		write(1, "(NILL)", 6);
+		return (6);
+	}
+	for (i = digits - 1; i <= digits; i--)/* storing nums in str in reverse */
+	{
+		str[i] = '0' + (result % 10);
+		result /= 10;
+	}
+	for (i = 0; i < digits; i++)
+	{
+		write(1, &str[i], 1);
+		count++;
+	}
+	free(str);
+	return (count);
+}
+
+/*
+ *write_o - convert decimals to octal & write them from va_list
+ *@my_args: my va_list
+ *Return: total count of characters
+ */
 int write_o(va_list *my_args)
 {
 	unsigned int count = 0, result = 0;
@@ -201,7 +259,7 @@ int write_o(va_list *my_args)
 	temp = result;
 	digits = 0;
 
-	while (temp != 0)
+	while (temp != 0)/*Calculate the number of digits in the octal*/
 	{
 		temp /= 8;
 		digits++;
@@ -209,11 +267,11 @@ int write_o(va_list *my_args)
 	str = malloc(sizeof(char) * (digits + 1));
 	if (str == NULL)
 	{
-		exit (98);
+		exit (98);/*Exit if memory allocation fails*/
 	}
-	for (i = digits - 1; i >= 0; i--)
+	for (i = digits - 1; i >= 0; i--)/*Generate the octal representation by storing remainders in the string*/
 	{
-		str[i] = '0' + (result % 8);
+		str[i] = '0' + (result % 8);/*Convert remainders to characters*/
 		result /= 8;
 	}
 	for (i = 0; i < digits; i++)
