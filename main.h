@@ -1,5 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stdio.h>
+#include <unistd.h>
+#include "stdarg.h"
+#include "stdlib.h"
+#include <stdint.h>
 
 /**
  * struct data - Represents data types and their corresponding functions
