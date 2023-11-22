@@ -9,6 +9,8 @@ It will handle some basic cases.
 - [Overview](#overview)
 - [Features](#features)
 - [Use](#use)
+- [Examples](#examples)
+- [Authors](authors)
 
 
 ## Overview
@@ -64,3 +66,7 @@ output:
 ```c
 Hello there
 ```
+## Authors
+
+- [Louis Toro](https://github.com/Ltoro9)
+- [Antonio De Jesus](https://github.com/Antoniofdjs)
