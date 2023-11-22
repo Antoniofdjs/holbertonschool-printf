@@ -68,4 +68,3 @@ int write_mod(const char *format)
 	write(1, "%", 1);
 	return (1);
 }
-
