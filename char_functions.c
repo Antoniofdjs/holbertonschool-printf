@@ -57,8 +57,6 @@ int write_unknown(const char *format)
 	write(1, format, 1); /*make a function call for this*/
 	return (2);
 	}
-	else
-		return (-1);
 }
 
 /**
