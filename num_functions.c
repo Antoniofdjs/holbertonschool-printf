@@ -225,5 +225,5 @@ int write_p(va_list *my_args)
 		count++;
 	}
 	free(str);
-	return (count);
+	return (count + 2);
 }
