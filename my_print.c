@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 	};
 	va_start(my_args, format);
 	if (format == NULL)
-		return (-1);
+		return (-1);/* we need to do this all func */
 	for (i = 0; format[i] != '\0' && format != NULL; i++)/*string still exists*/
 	{
 		if (format[i] == '%')/* match a % first time */

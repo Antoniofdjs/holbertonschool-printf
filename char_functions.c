@@ -53,7 +53,7 @@ int write_unknown(const char *format)
 {
 	write(1, "%", 1); /*print first % matched and char after*/
 	write(1, format, 1); /*make a function call for this*/
-	return (2);
+	return (2);/* we stillmissing return -1 */
 }
 
 /**
