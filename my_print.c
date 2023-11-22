@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')/* match a % first time */
 		{
 			i++;
-			for (j = 0; my_data[j].f != NULL; j++)/*Stil.l have functions to call*/
+			for (j = 0; my_data[j].f != NULL; j++)/*Still have functions to call*/
 			{
 				if (*my_data[j].type == format[i])/* Matched a case */
 				{
