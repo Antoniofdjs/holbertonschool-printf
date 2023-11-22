@@ -57,7 +57,7 @@ Example of using the _printf function:
 int main() {
 
   char str = "there"
-  _printf("Hello %s, str);
+  _printf("Hello %s", str);
 
   return (0);
 }
