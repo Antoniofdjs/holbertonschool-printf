@@ -44,3 +44,23 @@ To use the function simply call it by giving a format string with case specifier
 int total_len = _printf("Hello %s I am %d years old \n", "there", 1000);
 _printf("Total characters printed: %d\n", total_len);
 ```
+## Examples
+
+Example of using the _printf function:
+
+```C
+#include "main.h"
+
+int main() {
+
+  char str = "there"
+  _printf("Hello %s, str);
+
+  return (0);
+}
+```
+output:
+
+```c
+Hello there
+```
