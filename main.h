@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 /**
- * data- Structure represents data types and their corresponding functions
+ * struct data- Represents data types and their corresponding functions
  *
  * @type: Matching letters for the data type
  * @f: Pointer function  that handles the specified data type
@@ -18,7 +18,7 @@
  * A pointer function calls the function to handle the data
  */
 
-typedef struct
+typedef struct data
 {
 	char *type;/* Matching letters for data type */
 	int (*f)();/* Pointer to a function that handles the data */

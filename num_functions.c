@@ -93,7 +93,7 @@ int write_x(va_list *my_args, const char *format)
 		count++;
 	}
 	free(str);
-	return (count + 2);
+	return (count);
 }
 
 /**
@@ -225,5 +225,5 @@ int write_p(va_list *my_args)
 		count++;
 	}
 	free(str);
-	return (count);
+	return (count + 2);
 }
