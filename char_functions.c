@@ -51,7 +51,7 @@ int write_c(va_list *my_args)
 
 int write_unknown(const char *format)
 {
-	if (format != '\0')
+	if (*format != '\0')
 	{
 	write(1, "%", 1); /*print first % matched and char after*/
 	write(1, format, 1); /*make a function call for this*/
