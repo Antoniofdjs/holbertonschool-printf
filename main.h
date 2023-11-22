@@ -1,21 +1,27 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdio.h>
 #include <unistd.h>
-#include "stdarg.h"
-#include "stdlib.h"
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 
 /**
- * struct data - Represents data types and their corresponding functions
+ * data- Structure represents data types and their corresponding functions
+ *
  * @type: Matching letters for the data type
  * @f: Pointer function  that handles the specified data type
+ *
+ * Description:
+ * Structure is used for matching chars from a string
+ * passed into my '_printf' and associate them to a function.
+ * A pointer function calls the function to handle the data
  */
 
 typedef struct
 {
-	char *type;
-	int (*f)();
+	char *type;/* Matching letters for data type */
+	int (*f)();/* Pointer to a function that handles the data */
 } data;
 int _printf(const char *format, ...);
 int my_write_cs(va_list *my_args);

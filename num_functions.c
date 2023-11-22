@@ -179,7 +179,7 @@ int write_o(va_list *my_args)
 }
 
 /**
- * write_p - Function to write a pointer address in hexadecimal format.
+ * write_p - Write a pointer address in hexadecimal format.
  * @my_args: my va_list
  * Return: total count of characters
  */
@@ -187,7 +187,7 @@ int write_o(va_list *my_args)
 int write_p(va_list *my_args)
 {
 	void *ptr = va_arg(*my_args, void *);
-	uintptr_t addr = (uintptr_t)ptr;/*Convert the pointer to uintptr_t for manipulation*/
+	uintptr_t addr = (uintptr_t)ptr;/* Convert *ptr to uintptr_t for */
 	uintptr_t temp;
 	unsigned int count = 0;
 	char *str;
