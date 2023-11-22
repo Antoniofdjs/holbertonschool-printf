@@ -1,8 +1,11 @@
-#include <stdio.h>
 #include "main.h"
-#include "string.h"
-#include <unistd.h>
-#include "stdarg.h"
+
+/**
+ * _printf - Recreates the 'printf' function from C
+ * @format: A string that specifies the format output.
+ *			It can contain regular chars and format specs.
+ * Return: int total of chars printed
+ */
 
 int _printf(const char *format, ...)
 {
@@ -19,7 +22,7 @@ int _printf(const char *format, ...)
 		{"p", write_p},
 		{"%", write_mod},
 		{"o", write_o},
-		{NULL, NULL}
+		{NULL, NULL} /* type / f */
 	};
 	va_start(my_args, format);
 	for (i = 0; format[i] != '\0' && format != NULL; i++)/*string still exists*/
@@ -27,7 +30,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')/* match a % first time */
 		{
 			i++;
-			for (j = 0; my_data[j].f != NULL; j++)/*Still have functions to call*/
+			for (j = 0; my_data[j].f != NULL; j++)/*Stil.l have functions to call*/
 			{
 				if (*my_data[j].type == format[i])/* Matched a case */
 				{
@@ -35,12 +38,8 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (j == 10)/*unknown char after % match data[j]. =  null*/
-			{
-				write(1, "%", 1);/*print old % and char after*/
-				write(1, &format[i], 1);/*make a function call for this*/
-				total_count += 2;
-			}
+			if (j == 10)/*unknown char after %, match data[j]. =  null*/
+				total_count += write_unknown(&format[i]);
 		}
 		else/* no % found */
 		{
