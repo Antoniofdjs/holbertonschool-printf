@@ -36,11 +36,17 @@ int write_s(va_list *my_args)
 int write_c(va_list *my_args)
 {
 	char current_char;
-
+	
 	current_char = va_arg(*my_args, int);
+	
+	if (current_char == '%')
+	{
+		write(1, "%", 1);
+		return (1);
+	}
 
-	write(1, &current_char, 1);
-	return (1);
+		write(1, &current_char, 1);
+		return (1);
 }
 
 /**
