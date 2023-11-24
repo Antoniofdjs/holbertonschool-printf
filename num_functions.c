@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * write_d - convert integers to chars from va list
@@ -8,14 +9,18 @@
 
 int write_d(va_list *my_args)
 {
-	int temp, result, digits, count = 0, i;
+	int temp, result = va_arg(*my_args, int), digits = 0, count = 0, i;
 	char *str;
 
-	result = va_arg(*my_args, int);
 	if (result == '\0')
 	{
 		write(1, "0", 1);
 		return (1);
+	}
+	if (result == INT_MIN)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
 	}
 	if (result < 0)
 	{
@@ -24,7 +29,6 @@ int write_d(va_list *my_args)
 		count++;
 	}
 	temp = result;
-	digits = 0;
 	while (temp != 0)/*count the number of digits*/
 	{
 		temp /= 10;
