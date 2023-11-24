@@ -1,5 +1,4 @@
 #include "main.h"
-#include "main.h"
 /**
  *write_b - function to handle binaries
  *@my_args: my va_list
