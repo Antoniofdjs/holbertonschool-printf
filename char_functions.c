@@ -41,7 +41,8 @@ int write_c(va_list *my_args)
 	
 	if (current_char == '%')
 	{
-		write(1, "%", 1);
+		char per = '%';
+		write(1, &per, 1);
 		return (1);
 	}
 
