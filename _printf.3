@@ -1,6 +1,6 @@
 .\" Manpage for printf
 .\" Contact holberton@holbertonschool.com to correct errors or typos
-.TH _printf 1 "November 2023" "Holberton Coding School 1.1" "User Commands"
+.TH printf 1 "November 2023" "Holberton Coding School" "User Commands"
 
 .SH NAME
 printf \- format and print data
@@ -65,15 +65,14 @@ Print the memory address of the corresponding pointer argument.
 Print a literal '%'.
 
 .SH EXAMPLES
-
 .RS
-.B _printf("Hello %s", "World")
+.B printf "Hello, %s!\n" "World"
 .PP
 Output: Hello, World!
 .RE
 
 .RS
-.B _printf("The value is %d" 42)
+.B printf "The value is %d\n" 42
 .PP
 Output: The value is 42
 .RE
@@ -84,7 +83,7 @@ The
 command returns the total count of characters that were printed.
 
 .SH SEE ALSO
-printf(3)
+man(1), printf(3)
 
 .SH AUTHOR
 Louis Toro & Antonio De Jesus.
@@ -94,3 +93,4 @@ Report bugs to the printf package maintainer.
 
 .SH COPYRIGHT
 Copyright (C) Holberton Coding School. This is free software: you are free to change and redistribute it.
+
