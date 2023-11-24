@@ -22,6 +22,7 @@ int _printf(const char *format, ...)
 		{"p", write_p},
 		{"%", write_mod},
 		{"o", write_o},
+        {"b", write_b},
 		{NULL, NULL} /* type / f */
 	};
 	va_start(my_args, format);
@@ -40,7 +41,7 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (j == 10)/*unknown char after %, match data[j]. =  null*/
+			if (j == 11)/*unknown char after %, match data[j]. =  null*/
 				total_count += write_unknown(&format[i]);
 		}
 		else/* no % found */
