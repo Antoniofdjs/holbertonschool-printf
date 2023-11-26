@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 		{"p", write_p},
 		{"%", write_mod},
 		{"o", write_o},
-        {"b", write_b},
+		{"b", write_b},
 		{NULL, NULL} /* type / f */
 	};
 	va_start(my_args, format);
@@ -45,10 +45,7 @@ int _printf(const char *format, ...)
 				total_count += write_unknown(&format[i]);
 		}
 		else/* no % found */
-		{
-			write(1, &format[i], 1);
-			total_count++;
-		}
+			total_count += write_default(&format[i]);
 	}
 	va_end(my_args);
 	return (total_count);

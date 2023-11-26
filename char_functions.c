@@ -36,18 +36,19 @@ int write_s(va_list *my_args)
 int write_c(va_list *my_args)
 {
 	char current_char;
-	
+
 	current_char = va_arg(*my_args, int);
-	
+
 	if (current_char == '%')
 	{
 		char per = '%';
+
 		write(1, &per, 1);
 		return (1);
 	}
 
-		write(1, &current_char, 1);
-		return (1);
+	write(1, &current_char, 1);
+	return (1);
 }
 
 /**
@@ -75,3 +76,16 @@ int write_mod(const char *format)
 	write(1, "%", 1);
 	return (1);
 }
+
+/**
+ *write_default- writes chars from format, no case match
+ *@format: current char from format in _printf fucntion
+ *Return: total count of characters
+ */
+
+int write_default(const char *format)
+{
+	write(1, format, 1);
+	return (1);
+}
+
