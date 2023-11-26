@@ -42,10 +42,6 @@ int _printf(const char *format, ...)
 				}
 			}
 			if (j == 11)/*unknown char after %, match data[j]. =  null*/
-				total_count += write_unknown(&format[i]);
-		}
-		else/* no % found */
-			total_count += write_default(&format[i]);
 			{
 				conteo_function = write_unknown(&format[i]);
 				if (conteo_function == -1)
@@ -55,7 +51,8 @@ int _printf(const char *format, ...)
 			}
 		}
 			else/* no % found */
-
+			total_count += write_default(&format[i]);
+	}
 		va_end(my_args);
 		return (total_count);
 }
