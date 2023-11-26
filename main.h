@@ -35,4 +35,5 @@ int write_p(va_list *my_args);
 int write_b(va_list *my_args);
 int write_mod(const char *format);
 int write_unknown(const char *format);
+int write_default(const char *format);
 #endif
