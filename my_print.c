@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list my_args;
-	int i = 0, j, total_count = 0;
+	int i = 0, j, total_count = 0, conteo_function = 0;
 	data my_data[] = {
 		{"s", write_s},
 		{"c", write_c},
@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 			{
 				if (*my_data[j].type == format[i])/* Matched a case */
 				{
-					total_count += my_data[j].f(my_args, &format[i]);/* call function */
+					total_count += my_data[j].f(my_args, &format[i]);
 					break;
 				}
 			}
@@ -46,7 +46,16 @@ int _printf(const char *format, ...)
 		}
 		else/* no % found */
 			total_count += write_default(&format[i]);
-	}
-	va_end(my_args);
-	return (total_count);
+			{
+				conteo_function = write_unknown(&format[i]);
+				if (conteo_function == -1)
+					return (-1);
+
+				total_count += conteo_function;
+			}
+		}
+			else/* no % found */
+
+		va_end(my_args);
+		return (total_count);
 }
