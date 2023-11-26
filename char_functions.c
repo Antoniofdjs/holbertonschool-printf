@@ -78,7 +78,7 @@ int write_mod(const char *format)
 }
 
 /**
- *write_default- writes chars from format, no case match
+ *write_default- write chars from format, no case match
  *@format: current char from format in _printf fucntion
  *Return: total count of characters
  */
@@ -86,6 +86,7 @@ int write_mod(const char *format)
 int write_default(const char *format)
 {
 	write(1, format, 1);
+
 	return (1);
 }
 
